@@ -33,6 +33,28 @@ DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
 ```
+5. アプリケーションキーの作成
+``` bash
+php artisan key:generate
+```
+
+6. マイグレーションの実行
+``` bash
+php artisan migrate
+```
+
+7. シーディングの実行
+``` bash
+php artisan db:seed
+```
+8. シンボリックリンク作成
+``` bash
+php artisan storage:link
+```
+9. テストケース
+```bash
+php artisan test
+```
 
 ## メール認証
 mailtrapというツールを使用しています。<br>

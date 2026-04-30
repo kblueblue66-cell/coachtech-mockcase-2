@@ -12,7 +12,7 @@
         <h1>会員登録</h1>
     </div>
 
-    <form action="/register" class="form" method="post">
+    <form action="{{ route('register') }}" class="form" method="post">
         @csrf
         <div class="form__group">
             <div class="form__group-title">
@@ -24,7 +24,9 @@
                 </div>
                 <div class="form__error">
                     @error('name')
-                    {{ $message }}
+                        <div class="error-message">
+                            {{ $message}}
+                        </div>
                     @enderror
                 </div>
             </div>
@@ -40,7 +42,9 @@
                 </div>
                 <div class="form__error">
                     @error('email')
-                    {{ $message }}
+                        <div class="error-message">
+                            {{ $message }}
+                        </div>
                     @enderror
                 </div>
             </div>
@@ -56,7 +60,9 @@
                 </div>
                 <div class="form__error">
                     @error('password')
-                    {{ $message }}
+                        <div class="error-message">
+                            {{ $message }}
+                        </div>
                     @enderror
                 </div>
             </div>
@@ -72,7 +78,9 @@
                 </div>
                 <div class="form__error">
                     @error('password_confirmation')
-                    {{ $message }}
+                        <div class="error-message">
+                            {{ $message }}
+                        </div>
                     @enderror
                 </div>
             </div>
@@ -84,6 +92,7 @@
     </form>
 
     <div class="login__link">
-        <a href="/login" class="login__button-link">ログインはこちら</a>
+        <a href="{{ route('login') }}" class="login__button-link">ログインはこちら</a>
     </div>
 </div>
+@endsection
