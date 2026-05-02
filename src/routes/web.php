@@ -23,8 +23,13 @@ Route::post('login',[AuthenticatedSessionController::class,'store']);
 //一般ユーザー（要認証）
 Route::middleware(['auth'])->group(function(){
     //勤怠登録画面
-    Route::get('/attendance',[AttendanceController::class,'index']);
-    Route::post('/attendance',[AttendanceController::class,'store']);
+    Route::get('/attendance',[AttendanceController::class,'index'])->name('attendance.index');
+    //出勤・退勤機能
+    Route::post('/attendance/clock-in',[AttendanceController::class,'clockIn'])->name('attendance.clock-in');
+    Route::post('/attendance/clock-out',[AttendanceController::class,'clockOut'])->name('attendance.clock-out');
+    //休憩機能
+    Route::post('/attendance/rest-start',[AttendanceController::class,'restStart'])->name('attendance.rest-start');
+    Route::post('/attendance/rest-end',[AttendanceController::class,'restEnd'])->name('attendance.rest-end');
 
     //勤怠一覧
     Route::get('/attendance/list',[AttendanceListController::class,'index']);

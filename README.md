@@ -80,7 +80,15 @@ MAIL_FROM_NAME="${APP_NAME}"
 
 ## ER図
 
-
+## テストアカウント
+name:一般ユーザー
+email:test@example.com
+password:password123
+-----------------------
+name:管理者ユーザー
+email:admin@example.com
+password:adminpass888
+-----------------------
 
 ## URL
 - 開発環境：http://localhost/

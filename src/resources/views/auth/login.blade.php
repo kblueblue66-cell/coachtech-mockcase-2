@@ -7,7 +7,6 @@
 @endsection
 
 @section('content')
-
 <div class="login-container">
     <h1 class="login-title">ログイン</h1>
 

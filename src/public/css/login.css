@@ -1,7 +1,7 @@
 .login-container{
     background-color: #fff;
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
     padding: 20px;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .form-group{
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .form-group label{
@@ -24,7 +24,7 @@
 
 .form-group input{
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
@@ -45,7 +45,7 @@
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 32px;
     transition: opacity 0.3s;
 }
 

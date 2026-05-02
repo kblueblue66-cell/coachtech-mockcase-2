@@ -21,6 +21,7 @@ a{
     height: 60px;
     display: flex;
     align-items: center;
+    padding: 15px 40px;
     width: 100%;
 }
 
@@ -28,11 +29,10 @@ a{
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px;
 }
 
 .header-logo img{
-    height: 24px;
+    height: 30px;
     display: block;
 }
 
