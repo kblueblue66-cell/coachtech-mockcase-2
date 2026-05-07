@@ -91,7 +91,7 @@ name:管理者ユーザー
 
 email:admin@example.com
 
-password:adminpass888
+password:password123
 -----------------------
 
 ## URL

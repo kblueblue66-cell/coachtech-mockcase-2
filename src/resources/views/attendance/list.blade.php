@@ -45,7 +45,7 @@
                 <td>{{$attendance ? $attendance->total_rest_time : '' }}</td>
                 <td>{{$attendance ? $attendance->total_work_time : ''}}</td>
                 <td>
-                    {{--　データがある場合のに詳細リンク表示--}}
+                    {{-- データがある場合のに詳細リンク表示--}}
                     @if($attendance)
                         <a class="detail-link" href="/attendance/detail/{{ $attendance->id }}">詳細</a>
                     @endif
