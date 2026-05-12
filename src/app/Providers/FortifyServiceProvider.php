@@ -30,13 +30,22 @@ class FortifyServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Fortify::createUsersUsing(CreateNewUser::class);
-
+        //会員登録画面表示(一般ユーザー）
         Fortify::registerView(function(){
             return view('auth.register');
         });
+        //ログイン画面の表示(一般ユーザーと管理者の出し分け)
         Fortify::loginView(function(){
+            if(request()->is('admin/*') || request()->routeIs('admin.*')){
+                return view('admin.auth.login');
+            }
             return view('auth.login');
         });
+        //メール認証誘導画面
+        Fortify::verifyEmailView(function(){
+            return view('auth.verify-email');
+        });
+
         app()->instance(LogoutResponse::class,new class implements LogoutResponse{
             public function toResponse($request)
             {

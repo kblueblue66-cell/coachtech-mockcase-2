@@ -21,8 +21,8 @@ class AttendanceCorrectRequest extends Model
         return $this->belongsTo(Attendance::class);
     }
 
-    public function restCorrectRequests()
+    public function restCorrectionRequests()
     {
-        return $this->hasMany(RestCorrectRequest::class);
+        return $this->hasMany(RestCorrectRequest::class,'attendance_correct_request_id');
     }
 }

@@ -1,0 +1,110 @@
+.request-list__container{
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.request-list__title{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    padding-left: 15px;
+    border-left: 6px solid #000;
+}
+
+.tabs input[type="radio"]{
+    display: none;
+}
+
+.tabs{
+    margin-top: 20px;
+}
+
+.tab_item{
+    display: inline-block;
+    margin-right: 60px;
+    padding: 10px 0;
+    cursor: pointer;
+    font-size: 16px;
+    color: #999;
+    transition: all 0.3s;
+    border-bottom: 3px solid transparent;
+}
+
+.tab_item:last-of-type{
+    margin-right: 0;
+}
+
+.tab_item:hover{
+    color: #000;
+}
+
+#pending:checked ~ .tab_item[for="pending"],
+#approved:checked~.tab_item[for="approved"]{
+    color: #000;
+    font-weight: bold;
+    border-bottom: 3px solid #000;
+}
+
+.tab_content{
+    display: none;
+    padding-top: 30px;
+    border-top: 1px solid #ddd;
+}
+
+#pending:checked ~ #pending_content,
+#approved:checked ~ #approved_content{
+    display: block;
+}
+
+.request-table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+.request-table tr:last-child td{
+    border-bottom: none;
+}
+
+.request-table th{
+    text-align: left;
+    padding: 15px;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #eee;
+}
+
+.request-table td{
+    padding: 20px 15px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    vertical-align: middle;
+}
+
+.detail-link{
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.detail-link:hover{
+    opacity: 0.6;
+    text-decoration: underline;
+}
+
+@media(max-width: 768px){
+    .request-table{
+        font-size: 14px;
+    }
+
+.request-table th, .request-table td{
+    padding: 10px;
+    }
+}

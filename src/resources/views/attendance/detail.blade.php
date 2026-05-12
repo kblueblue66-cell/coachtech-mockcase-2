@@ -33,7 +33,7 @@
                     <th>出勤・退勤</th>
                     <td>
                         @if($isPending)
-                            {{ $attendance->clock_in }} ~ {{ $attendance->clock_out }}
+                            {{ $pendingRequest->revised_clock_in ? \Carbon\Carbon::parse($pendingRequest->revised_clock_in)->format('H:i') : '' }} ~ {{ $pendingRequest->revised_clock_out ? \Carbon\Carbon::parse($pendingRequest->revised_clock_out)->format('H:i') : '' }}
                         @else
                             <input type="time" name="clock_in" value="{{ old('clock_in',$attendance->clock_in) }}">
                             @error('clock_in')
@@ -48,30 +48,43 @@
                     </td>
                 </tr>
 
-                @foreach($attendance->rests as $index => $rest)
+            @if($isPending)
+                @foreach($pendingRequest->restCorrectionRequests as $restRequest)
                 <tr>
                     <th>休憩{{ $loop->iteration }}</th>
                     <td>
-                        @if($isPending)
-                            {{ $rest->start_time }} ~ {{ $rest->end_time }}
-                        @else
-                            <input type="time" name="rest_start[]" value="{{ old('rest_start.'.$index,$rest->start_time) }}">
-                            ~
-                            <input type="time" name="rest_end[]" value="{{ old('rest_end.'.$index,$rest->end_time) }}">
-                        @endif
+                        {{ $restRequest->revised_start_time ? \Carbon\Carbon::parse($restRequest->revised_start_time)->format('H:i') : '' }} ~
+                        {{ $restRequest->revised_end_time ? \Carbon\Carbon::parse($restRequest->revised_end_time)->format('H:i') : '' }}
+                    </td>
+                </tr>
+                @endforeach
+            @else
+                @foreach($attendance->rests as $index => $rest)
+                <tr>
+                    <th>休憩{{ $index + 1 }}</th>
+                    <td>
+                        <input type="time" name="rest_start[]" value="{{old('rest_start.' .$index, $rest->start_time) }}">
+                        @error('rest_start.' . $index) <p class="error">{{ $message }}</p>@enderror
+                        ~
+                        <input type="time" name="rest_end[]" value="{{old('rest_end.' .$index, $rest->end_time) }}">
+                        @error('rest_end.' . $index) <p class="error">{{ $message }}</p>@enderror
                     </td>
                 </tr>
                 @endforeach
 
-                @unless($isPending)
+                @php $nextIndex = $attendance->rests->count(); @endphp
                 <tr>
-                    <th>休憩{{ $attendance->rests->count()+ 1 }}</th>
+                    <th>休憩{{ $nextIndex+ 1 }}</th>
                     <td>
-                        <input type="time" name="rest_start[]"> ~ <input type="time" name="rest_end[]">
+                        <input type="time" name="rest_start[]" value="{{ old('rest_start.' . $nextIndex) }}">
+                        @error('rest_start.' . $nextIndex) <p class="error">{{ $message }}</p>
+                        @enderror
+                        ~
+                        <input type="time" name="rest_end[]" value="{{ old('rest_end.' . $nextIndex)}}">
+                        @error('rest_end.' . $nextIndex) <p class="error">{{ $message }}</p>@enderror
                     </td>
                 </tr>
-                @endunless
-
+            @endif
                 <tr>
                     <th>備考</th>
                     <td>
@@ -89,7 +102,7 @@
 
             <div class="form-footer">
                 @if($isPending)
-                    <p class="pending-message" style="color: red">承認待ちのため修正はできません。</p>
+                    <p class="pending-message" style="color: red">*承認待ちのため修正はできません。</p>
                 @else
                     <button type="submit" class="submit-btn">修正</button>
                 @endif

@@ -12,13 +12,16 @@ class AttendanceDetailController extends Controller
 {
     public function show($id)
     {
-        $attendance = Attendance::with('rests')->findOrFail($id);
+        $attendance = Attendance::with(['user','rests'])->findOrFail($id);
 
-        $isPending = AttendanceCorrectRequest::where('attendance_id',$id)
+        $pendingRequest = AttendanceCorrectRequest::where('attendance_id',$id)
             ->where('status', 1)
-            ->exists();
+            ->with('restCorrectionRequests')
+            ->first();
 
-        return view('attendance.detail',compact('attendance','isPending'));
+        $isPending = (bool)$pendingRequest;
+
+        return view('attendance.detail',compact('attendance','isPending','pendingRequest'));
     }
     public function update(AttendanceCorrectionRequest $request,$id)
     {
@@ -34,13 +37,16 @@ class AttendanceDetailController extends Controller
 
         if($request->has('rest_start')){
             foreach($request->rest_start as $index => $startTime){
-                $correctionRequest->restCorrectionRequests()->create([
-                    'revised_start_time' => $startTime,
-                    'revised_end_time'   => $request->rest_end[$index],
-                ]);
+                $endTime = $request->rest_end[$index] ?? null;
+
+                if(!empty($startTime) && !empty($endTime)){
+                    $correctionRequest->restCorrectionRequests()->create([
+                        'revised_start_time' => $startTime,
+                        'revised_end_time'   => $endTime,
+                    ]);
+                }
             }
         }
-
-        return redirect('/stamp_correction_request/list');
+        return redirect()->route('attendance.detail',['id' => $id]);
     }
 }

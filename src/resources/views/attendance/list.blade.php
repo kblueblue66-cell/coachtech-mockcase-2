@@ -40,8 +40,8 @@
             <tr>
                 {{-- データがあれば表示、なければ空 --}}
                 <td>{{ \Carbon\Carbon::parse($dateString)->isoFormat('M/D(ddd)') }}</td>
-                <td>{{$attendance ? $attendance->clock_in : ''}}</td>
-                <td>{{$attendance ? $attendance->clock_out : '' }}</td>
+                <td>{{ ($attendance && $attendance->clock_in) ? \Carbon\Carbon::parse($attendance->clock_in)->format('H:i') : '' }}</td>
+                <td>{{ ($attendance && $attendance->clock_out) ? \Carbon\Carbon::parse($attendance->clock_out)->format('H:i') : '' }}</td>
                 <td>{{$attendance ? $attendance->total_rest_time : '' }}</td>
                 <td>{{$attendance ? $attendance->total_work_time : ''}}</td>
                 <td>

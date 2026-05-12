@@ -11,7 +11,7 @@ class AttendanceListController extends Controller
 {
     public function index(Request $request)
     {
-        //表示する年月を決定する　　
+        //表示する年月を決定する
         $month = $request->query('month',Carbon::now()->format('Y-m'));
         $displayDate = Carbon::parse($month);
         //１ヶ月分の勤怠全てが表示される

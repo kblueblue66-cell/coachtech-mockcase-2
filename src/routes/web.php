@@ -8,6 +8,7 @@ use App\Http\Controllers\AttendanceListController;
 use App\Http\Controllers\AttendanceDetailController;
 use App\Http\Controllers\StampCorrectionRequestController;
 //管理者用コントローラー
+use App\Http\Controllers\Admin\AuthenticatedSessionController as AdminAuthenticatedSessionController;
 use App\Http\Controllers\Admin\AttendanceController as AdminAttendanceController;
 use App\Http\Controllers\Admin\StaffController as AdminStaffController;
 use App\Http\Controllers\Admin\StampCorrectionController as AdminStampCorrectionController;
@@ -17,8 +18,14 @@ Route::get('/register',[RegisterUserController::class,'create'])->name('register
 Route::post('/register',[RegisterUserController::class,'store']);
 
 //一般ユーザー用用ログイン
-Route::get('login',[AuthenticatedSessionController::class,'create'])->name('login');
-Route::post('login',[AuthenticatedSessionController::class,'store']);
+Route::get('/login',[AuthenticatedSessionController::class,'create'])->name('login');
+Route::post('/login',[AuthenticatedSessionController::class,'store']);
+
+//管理者用ログイン
+Route::prefix('admin')->group(function(){
+    Route::get('/login',[AdminAuthenticatedSessionController::class,'create'])->name('admin.login');
+    Route::post('/login',[AdminAuthenticatedSessionController::class,'store']);
+});
 
 //一般ユーザー（要認証）
 Route::middleware(['auth'])->group(function(){
@@ -32,36 +39,41 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/attendance/rest-end',[AttendanceController::class,'restEnd'])->name('attendance.rest-end');
 
     //勤怠一覧
-    Route::get('/attendance/list',[AttendanceListController::class,'index']);
+    Route::get('/attendance/list',[AttendanceListController::class,'index'])->name('attendance.list');
 
-    //勤怠詳細
-    Route::get('/attendance/detail/{id}',[AttendanceDetailController::class,'show']);
-    Route::post('/attendance/detail/{id}',[AttendanceDetailController::class,'update']);
+    //勤怠詳細・修正
+    Route::get('/attendance/detail/{id}',[AttendanceDetailController::class,'show'])->name('attendance.detail');
+    Route::post('/attendance/detail/{id}',[AttendanceDetailController::class,'update'])->name('attendance.update');
 
-    //申請一覧
-    Route::get('/stamp_correction_request/list',[StampCorrectionRequestController::class,'index']);
+    //ログアウト
+    Route::post('/logout',[AuthenticatedSessionController::class,'destroy'])->name('logout');
 
     //管理者用(要認証）
 Route::middleware(['can:admin'])->group(function(){
     //勤怠一覧
-    Route::get('/admin/attendance/list',[AdminAttendanceController::class,'index']);
+    Route::get('/admin/attendance/list',[AdminAttendanceController::class,'index'])->name('admin.attendance.list');
 
-    //勤怠詳細
-    Route::get('/admin/attendance/{id}',[AdminAttendanceController::class,'show']);
-    Route::post('/admin/attendance/{id}',[AdminAttendanceController::class,'update']);
+    //勤怠詳細・修正
+    Route::get('/admin/attendance/{id}',[AdminAttendanceController::class,'show'])->name('admin.attendance.show');
+    Route::post('/admin/attendance/{id}',[AdminAttendanceController::class,'update'])->name('admin.attendance.update');
 
     //スタッフ一覧
-    Route::get('/admin/staff/list',[AdminStaffController::class,'index']);
+    Route::get('/admin/staff/list',[AdminStaffController::class,'index'])->name('admin.staff.list');
 
     //スタッフ別勤怠一覧
-    Route::get('/admin/attendance/staff/{id}',[AdminStaffController::class,'show']);
-    Route::get('/admin/attendance/staff/{id}/export',[AdminStaffController::class,'export']);
-
-    //申請一覧
-    Route::get('/admin/stamp_correction_request/list',[AdminStampCorrectionController::class,'index']);
+    Route::get('/admin/attendance/staff/{id}',[AdminStaffController::class,'show'])->name('admin.staff.attendance.show');
+    Route::get('/admin/attendance/staff/{id}/export',[AdminStaffController::class,'export'])->name('admin.staff.attendance.export');
 
     //修正申請承認
-    Route::get('/stamp_correction_request/approve/{attendance_correct_request_id}',[AdminStampCorrectionController::class,'show']);
-    Route::post('/stamp_correction_request/approve/{attendance_correct_request_id}',[AdminStampCorrectionController::class,'approve']);
+    Route::get('/stamp_correction_request/approve/{attendance_correct_request_id}',[AdminStampCorrectionController::class,'show'])->name('admin.stamp_correction_request.show');
+    Route::post('/stamp_correction_request/approve/{attendance_correct_request_id}',[AdminStampCorrectionController::class,'approve'])->name('admin.stamp_correction_request.approve');
+
+    //管理者ログアウト
+    Route::post('/admin/logout',[AdminAuthenticatedSessionController::class,'destroy'])->name('admin.logout');
     });
+    //申請一覧(ログインユーザーのroleで分ける）
+    Route::get('stamp_correction_request/list',function(){
+        return auth()->user()->role === 1
+        ? app(AdminStampCorrectionController::class)->index() : app(StampCorrectionRequestController::class)->index();
+    })->name('stamp_correction_request.list');
 });
