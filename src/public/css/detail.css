@@ -1,7 +1,7 @@
 .attendance-detail-container{
     max-width: 900px;
-    margin: 80px auto;
-    padding: 0 20px;
+    margin: 0 auto;
+    padding: 40px 0;
 }
 
 .attendance-detail-container h2{
@@ -16,38 +16,44 @@
 
 .attendance-detail-card{
     background-color: #fff;
-    padding: 40px 60px;
+    padding: 40px 0 0 0;
     border-radius: 4px;
 }
 
 .detail-table{
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 30px;
 }
 
-.detail-table tr {
+.detail-table th,
+.detail-table td{
     border-bottom: 1px solid #ddd;
+    padding: 25px 40px;
 }
+
+.detail-table tr:last-child th,
+.detail-table tr:last-child td {
+    border-bottom: none;
+}
+
 
 .detail-table th {
     width: 30%;
-    text-align: left;
+    text-align: center;
     padding: 25px 10px;
     font-weight: bold;
-    color: #333;
+    color: #737373;
 }
 
 .detail-table td {
-    display: flex;
     align-items: center;
-    gap: 60px;
+    font-weight: bold;
     padding: 20px;
     color: #000;
 }
 
 .date-year{
-    margin-right: 100px;
+    margin-right: 200px;
 }
 
 .detail-table input[type='text'],
@@ -57,6 +63,7 @@
     border-radius: 4px;
     padding: 8px;
     font-size: 16px;
+    text-align: center;
     background-color: #fff;
 }
 
@@ -71,6 +78,11 @@ input[type='time']{
     resize: none;
 }
 
+.attendance-detail-range{
+    font-size: 20px;
+    margin: 0 60px;
+}
+
 .error{
     color: #ff0000;
     font-size: 14px;
@@ -78,8 +90,9 @@ input[type='time']{
 }
 
 .form-footer{
+    background-color: #f0eff2;;
     text-align: right;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .pending-message{
