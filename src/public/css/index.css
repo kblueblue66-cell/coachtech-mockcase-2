@@ -7,19 +7,19 @@
 }
 
 .status-badge{
-    background-color: #dfdfdf;
-    color: #4b4b4b;
+    background-color: #C8C8C8;
+    color: #696969;
     padding: 4px 16px;
-    border-radius: 15px;
-    font-size: 14px;
-    margin-bottom: 20px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
     display: inline-block;
 }
 
 .date-display{
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 40px;
+    font-size: 35px;
+    margin: 30px 0;
 }
 
 .time-display{
@@ -35,11 +35,11 @@
 }
 
 .button-group button{
-    width: 200px;
-    height: 55px;
-    font-size: 18px;
+    width: 180px;
+    height: 60px;
+    font-size: 25px;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: 20px;
     cursor: pointer;
     border: none;
     transition: background-color 0.3s;
@@ -53,11 +53,10 @@
 .btn-white{
     background-color: #ffffff;
     color: #000000;
-    border: 2px solid #000000 !important;
 }
 
 .finish-message{
-    font-size: 18px;
+    font-size: 25px;
     font-weight: bold;
     margin-top: 20px;
 }

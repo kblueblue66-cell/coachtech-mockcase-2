@@ -1,0 +1,125 @@
+.attendance-detail__container {
+    max-width: 950px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.attendance-detail__title {
+    font-size: 26px;
+    font-weight: bold;
+    border-left: 6px solid #000;
+    padding-left: 15px;
+    margin-bottom: 40px;
+    line-height: 1.2;
+    color: #000;
+}
+
+.attendance-detail__error-message {
+    color: #ff0000;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.attendance-detail__table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.attendance-detail__table th,
+.attendance-detail__table td {
+    padding: 30px 40px;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+}
+
+.attendance-detail__table th {
+    width: 30%;
+    text-align: left;
+    background-color: #fff;
+    color: #737373;
+    font-weight: bold;
+}
+
+.attendance-detail__table td{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.date-year{
+    margin-right: 125px
+}
+
+.attendance-detail__table input[type="time"],
+.attendance-detail__table input[type="text"],
+.attendance-detail__table textarea {
+    border: 1px solid #E1E1E1;
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #fff;
+}
+
+.attendance-detail__table input[type="time"] {
+    width: 120px;
+}
+
+.attendance-detail__table input[readonly],
+.attendance-detail__table textarea[readonly] {
+    border: 1px solid #E1E1E1;
+    background-color: #fff;
+    font-weight: bold;
+    color: #000;
+}
+
+input[type='time']::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.time-separator {
+    margin: 0 50px;
+}
+
+.attendance-detail__table textarea {
+    width: 75%;
+    height: 100px;
+    text-align: left;
+    resize: none;
+}
+
+.attendance-detail__actions {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.attendance-detail__actions .approve-btn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.attendance-detail__actions .approved-label{
+    background-color: #696969;
+    color: #fff;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+

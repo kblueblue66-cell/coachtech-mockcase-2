@@ -2,7 +2,6 @@
     background-color: #fff;
     width: 100%;
     max-width: 680px;
-    padding: 16px;
 }
 
 .register-form__heading h1{
@@ -21,13 +20,13 @@
 
 .form__label--item{
     font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .form__input--text input{
     width: 100%;
     padding: 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #000;
     border-radius: 4px;
     font-size: 16px;
     outline: none;
@@ -55,7 +54,7 @@
     color: #fff;
     border: none;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
     cursor: pointer;
     transition: opacity 0.3s;
@@ -73,9 +72,9 @@
 }
 
 .login__button-link{
-    color: #0000ff;
+    color: #0073CC;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 20px;
 }
 
 .login__button-link:hover{

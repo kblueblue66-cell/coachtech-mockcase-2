@@ -13,9 +13,18 @@
     </div>
 
     <div class="month-nav">
-        <a href="{{ route('admin.staff.attendance.show',['id' => $user->id,'month' => $prevMonth]) }}" class="nav-btn">← 前月</a>
-        <span class="current-month">{{ \Carbon\Carbon::parse($month)->format('Y/m') }}</span>
-        <a href="{{ route('admin.staff.attendance.show',['id' => $user->id,'month' => $nextMonth]) }}" class="nav-btn">翌月 →</a>
+        <a href="{{ route('admin.staff.attendance.show',['id' => $user->id,'month' => $prevMonth]) }}" class="month-nav__link month-nav__link--prev">
+            <img src="{{ asset('img/088deff71873c09816bca59dd0d7efa7308e8fba (1).png') }}" alt="前月" class="arrow-icon__right">前月
+        </a>
+
+        <div class="month-nav__current">
+            <img src="{{ asset('img/50f4850c610ecd6f85b7ef666143260b91151a78.png')}}" alt="カレンダー" class="calender-icon">
+            <span >{{ \Carbon\Carbon::parse($month)->format('Y/m') }}</span>
+        </div>
+
+        <a href="{{ route('admin.staff.attendance.show',['id' => $user->id,'month' => $nextMonth]) }}" class="month-nav__link month-nav__link--next">翌月
+            <img src="{{ asset('img/088deff71873c09816bca59dd0d7efa7308e8fba (1).png')}}" alt="翌月" class='arrow-icon__left'>
+        </a>
     </div>
 
     <table class="attendance-table">

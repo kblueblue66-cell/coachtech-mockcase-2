@@ -45,6 +45,12 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/attendance/detail/{id}',[AttendanceDetailController::class,'show'])->name('attendance.detail');
     Route::post('/attendance/detail/{id}',[AttendanceDetailController::class,'update'])->name('attendance.update');
 
+    //申請一覧(一般/管理者 共通パス）
+    Route::get('/stamp_correction_request/list',function(Illuminate\Http\Request $request){
+        return auth()->user()->role === 1
+        ? app(\App\Http\Controllers\Admin\StampCorrectionController::class)->index($request) : app(\App\Http\Controllers\StampCorrectionRequestController::class)->index($request);
+        })->name('stamp_correction_request.list');
+
     //ログアウト
     Route::post('/logout',[AuthenticatedSessionController::class,'destroy'])->name('logout');
 
@@ -71,9 +77,4 @@ Route::middleware(['can:admin'])->group(function(){
     //管理者ログアウト
     Route::post('/admin/logout',[AdminAuthenticatedSessionController::class,'destroy'])->name('admin.logout');
     });
-    //申請一覧(ログインユーザーのroleで分ける）
-    Route::get('stamp_correction_request/list',function(){
-        return auth()->user()->role === 1
-        ? app(AdminStampCorrectionController::class)->index() : app(StampCorrectionRequestController::class)->index();
-    })->name('stamp_correction_request.list');
 });

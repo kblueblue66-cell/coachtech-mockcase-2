@@ -1,13 +1,13 @@
 .request-list__container{
-    max-width: 1200px;
-    margin: 40px auto;
+    max-width: 950px;
+    margin: 50px auto;
     padding: 0 20px;
 }
 
 .request-list__title{
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     padding-left: 15px;
     border-left: 6px solid #000;
 }
@@ -22,7 +22,7 @@
 
 .tab_item{
     display: inline-block;
-    margin-right: 60px;
+    margin: 0 60px 0 60px;
     padding: 10px 0;
     cursor: pointer;
     font-size: 16px;
@@ -40,16 +40,15 @@
 }
 
 #pending:checked ~ .tab_item[for="pending"],
-#approved:checked~.tab_item[for="approved"]{
+#approved:checked ~ .tab_item[for="approved"]{
     color: #000;
     font-weight: bold;
-    border-bottom: 3px solid #000;
 }
 
 .tab_content{
     display: none;
     padding-top: 30px;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #000;
 }
 
 #pending:checked ~ #pending_content,
@@ -63,7 +62,7 @@
     border-spacing: 0;
     margin-top: 10px;
     background-color: #fff;
-    border-radius: 4px;
+    border-radius: 10px;
     overflow: hidden;
     border: 1px solid #eee;
 }
@@ -73,17 +72,19 @@
 }
 
 .request-table th{
-    text-align: left;
+    text-align: center;
     padding: 15px;
     font-weight: bold;
-    color: #333;
-    border-bottom: 2px solid #eee;
+    color: #737373;
+    border-bottom: 3px solid #eee;
 }
 
 .request-table td{
     padding: 20px 15px;
+    text-align: center;
     border-bottom: 1px solid #eee;
-    color: #333;
+    font-weight: bold;
+    color: #737373;
     vertical-align: middle;
 }
 

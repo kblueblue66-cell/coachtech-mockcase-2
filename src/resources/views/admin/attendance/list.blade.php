@@ -3,7 +3,7 @@
 @section('title','管理者用勤怠一覧')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/admin/attendance.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin/attendance-list.css') }}">
 @endsection
 
 @section('content')
@@ -14,15 +14,16 @@
 
     <div class="date-navigation">
         <a href="{{ route('admin.attendance.list',['date' => \Carbon\Carbon::parse($date)->subDay()->format('Y-m-d')]) }}" class="nav-link">
-            &larr; 前日
+            <img src="{{ asset('img/088deff71873c09816bca59dd0d7efa7308e8fba (1).png') }}" alt="前月" class="arrow-icon__right">前日
         </a>
 
         <span class="current-date-text">
+            <img src="{{ asset('img/50f4850c610ecd6f85b7ef666143260b91151a78.png')}}" alt="カレンダー" class="calender-icon">
             {{ \Carbon\Carbon::parse($date)->format('Y/m/d') }}
         </span>
 
-        <a href="{{ route('admin.attendance.list',['date' => \Carbon\Carbon::parse($date)->addDay()->format('Y-m-d')]) }}" class="nav-link">
-            翌日 &rarr;
+        <a href="{{ route('admin.attendance.list',['date' => \Carbon\Carbon::parse($date)->addDay()->format('Y-m-d')]) }}" class="nav-link">翌日
+            <img src="{{ asset('img/088deff71873c09816bca59dd0d7efa7308e8fba (1).png')}}" alt="翌月" class='arrow-icon__left'>
         </a>
     </div>
 

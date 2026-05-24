@@ -20,7 +20,7 @@
             <nav class="header__nav">
                 <ul class="header__nav-list">
                     <li class="header__nav-item">
-                        <a href="/attendance" class="header__nav-link">勤怠一覧</a>
+                        <a href="/admin/attendance/list" class="header__nav-link">勤怠一覧</a>
                     </li>
                     <li class="header__nav-item">
                         <a href="{{ route('admin.staff.list') }}" class="header__nav-link">スタッフ一覧</a>

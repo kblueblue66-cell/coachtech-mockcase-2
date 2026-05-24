@@ -16,7 +16,7 @@ class AttendanceDetailController extends Controller
 
         $pendingRequest = AttendanceCorrectRequest::where('attendance_id',$id)
             ->where('status', 1)
-            ->with('restCorrectionRequests')
+            ->with('restCorrectRequests')
             ->first();
 
         $isPending = (bool)$pendingRequest;
@@ -40,7 +40,7 @@ class AttendanceDetailController extends Controller
                 $endTime = $request->rest_end[$index] ?? null;
 
                 if(!empty($startTime) && !empty($endTime)){
-                    $correctionRequest->restCorrectionRequests()->create([
+                    $correctionRequest->restCorrectRequests()->create([
                         'revised_start_time' => $startTime,
                         'revised_end_time'   => $endTime,
                     ]);

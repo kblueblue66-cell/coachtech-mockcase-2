@@ -1,5 +1,5 @@
 .list__container{
-    max-width: 1200px;
+    max-width: 900px;
     margin: 40px auto;
     padding: 0 20px;
 }
@@ -27,31 +27,35 @@
     align-items: center;
     gap: 30px;
     margin-bottom: 40px;
-    background-color: #fcfcfc;
+    background-color: #fff;
     padding: 10px;
-    border-radius: 4px;
+    border-radius: 10px;
 }
 
 .month-nav__link{
     text-decoration: none;
-    color: #4b4b4b;
+    color: #000;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: bold;
     display: flex;
     align-items: center;
     padding: 5px 15px;
     transition: background-color 0.3s;
 }
 
-.month-nav__link--prev::before{
-    content: "←";
-    margin-right: 8px;
-    font-weight: normal;
+.arrow-icon__right{
+    height: 12px;
+    margin-right: 10px;
 }
-.month-nav__link--next::after {
-    content: "→";
-    margin-left: 8px;
-    font-weight: normal;
+
+.arrow-icon__left{
+    height: 12px;
+    transform: scaleX(-1);
+    margin-left: 10px;
+}
+
+.calender-icon{
+    height: 20px;
 }
 
 .month-nav__current{
@@ -67,7 +71,7 @@
     border-collapse: separate;
     border-spacing: 0;
     border: 1px solid #eee;
-    border-radius: 4px;
+    border-radius: 10px;
     background-color: #fff;
     overflow: hidden;
     margin-top: 20px;
@@ -79,17 +83,19 @@
 
 .attendance-table th {
     background-color: #fff;
-    color: #333;
+    color: #737373;
     font-weight: bold;
-    text-align: left;
-    padding: 15px;
-    border-bottom: 2px solid #ddd;
+    text-align: center;
+    padding: 13px;
+    border-bottom: 3px solid #E1E1E1;
 }
 
 .attendance-table td {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-    color: #4b4b4b;
+    padding: 13px;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid #E1E1E1;
+    color: #737373;
 }
 
 .detail-link{

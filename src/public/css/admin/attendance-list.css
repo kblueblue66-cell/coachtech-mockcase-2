@@ -1,0 +1,101 @@
+.attendance-container{
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px 0;
+}
+
+.attendance-title{
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.attendance-title h2{
+    font-size: 24px;
+    font-weight: bold;
+    border-left: 8px solid #000;
+    padding-left: 15px;
+    line-height: 1;
+}
+
+.date-navigation{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px 40px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.arrow-icon__right {
+    height: 12px;
+    margin-right: 10px;
+}
+
+.arrow-icon__left {
+    height: 12px;
+    transform: scaleX(-1);
+    margin-left: 10px;
+}
+
+.calender-icon {
+    height: 20px;
+}
+
+.nav-link{
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+}
+
+.current-date-text{
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.attendance-table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.attendance-table th,
+.attendance-table td{
+    padding: 20px;
+    text-align: center;
+    border-bottom: 3px solid #eee;
+}
+
+.attendance-table th{
+    background-color: #fff;
+    color: #888;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.attendance-table td{
+    font-size: 16px;
+    font-weight: bold;
+    color: #737373;
+}
+
+.detail-link{
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.detail-link:hover{
+    text-decoration: underline;
+}
+
+.no-date{
+    color: #999;
+    padding: 40px !important;
+}

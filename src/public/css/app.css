@@ -7,7 +7,7 @@
 
 body{
     background-color: #f0eff2;
-    color: #333;
+    color: #000;
     line-height: 1.6;
     min-width: 1200px
 }
@@ -15,6 +15,7 @@ body{
 .header{
     background-color: #000;
     color: #fff;
+    height: 60px;
     padding: 15px 40px;
 }
 
@@ -44,7 +45,7 @@ body{
     color: #fff;
     text-decoration: none;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
     background: none;
     border: none;
     color: #fff;
