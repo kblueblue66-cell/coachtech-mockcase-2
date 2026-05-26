@@ -13,10 +13,12 @@ class StampCorrectionRequestController extends Controller
         $userId = Auth::id();
 
         $pendingRequests = AttendanceCorrectRequest::where('user_id',$userId)
+            ->where('user_id',$userId)
             ->where('status', 1)
             ->get();
 
         $approvedRequests = AttendanceCorrectRequest::where('user_id',$userId)
+            ->where('user_id',$userId)
             ->where('status', 2)
             ->get();
 

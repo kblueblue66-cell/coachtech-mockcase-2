@@ -20,7 +20,7 @@
 
 .tab-item {
     color: #000;
-    margin: 0 50px 0px 50px;
+    margin: 0 50px;
     cursor: pointer;
     text-decoration: none;
     transition: color 0.3s;

@@ -35,14 +35,13 @@
                 <th>出勤・退勤</th>
                 <td>
                     <input type="time" name="clock_in" value="{{ old('clock_in', \Carbon\Carbon::parse($attendance->clock_in)->format('H:i')) }}" {{ $isPending ? 'readonly' : '' }}>
-                    @error('clock_in')
-                        <p class="error">{{ $message }}</p>
-                    @enderror
                     <span class="time-separator">〜</span>
                     <input type="time" name="clock_out" value="{{ old('clock_out',$attendance->clock_out ? \Carbon\Carbon::parse($attendance->clock_out)->format('H:i') : '') }}" {{ $isPending ? 'readonly' : '' }}>
-                    @error('clock_out')
-                        <p class="error">{{ $message }}</p>
-                    @enderror
+                    @if($errors->has('clock_in') || $errors->has('clock_out'))
+                        <p class="error">
+                            {{ $errors->first('clock_in') ?: $errors->first('clock_out') }}
+                        </p>
+                    @endif
                 </td>
             </tr>
             @foreach($attendance->rests as $index => $rest)
@@ -52,6 +51,15 @@
                     <input type="time" name="rests[{{ $rest->id }}][start]" value="{{ old('rests.'.$rest->id.'.start', \Carbon\Carbon::parse($rest->start_time)->format('H:i')) }}" {{ $isPending ? 'readonly' : '' }}>
                     <span class="time-separator">〜</span>
                     <input type="time" name="rests[{{ $rest->id }}][end]" value="{{ old('rests.'.$rest->id.'.end', $rest->end_time ? \Carbon\Carbon::parse($rest->end_time)->format('H:i') : '') }}" {{ $isPending ? 'readonly' : '' }}>
+                    @php
+                        $startKey = 'rests.' .$rest->id . '.start';
+                        $endKey = 'rests.' .$rest->id . '.end';
+                    @endphp
+                    @if($errors->has($startKey) || $errors->has($endKey))
+                        <p class="error">
+                            {{ $errors->first($startKey) ?: $errors->first($endKey) }}
+                        </p>
+                    @endif
                 </td>
             </tr>
             @endforeach

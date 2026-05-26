@@ -12,7 +12,7 @@
     <header class="header">
         <div class="header__inner">
             <div class="header__logo">
-                <a href="/attendance">
+                <a href="/admin/attendance/list">
                     <img src="{{ asset('img/COACHTECHヘッダーロゴ (1).png')}}" alt="COACHTECH">
                 </a>
             </div>

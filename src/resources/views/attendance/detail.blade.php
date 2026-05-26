@@ -35,14 +35,12 @@
                             {{ $pendingRequest->revised_clock_out ? \Carbon\Carbon::parse($pendingRequest->revised_clock_out)->format('H:i') : '' }}
                         @else
                             <input type="time" name="clock_in" value="{{ old('clock_in',$attendance->clock_in ? \Carbon\Carbon::parse($attendance->clock_in)->format('H:i') : '') }}">
-                            @error('clock_in')
-                                <p class="error">{{ $message }}</p>
-                            @enderror
                             <span class="time-separator">〜</span>
                             <input type="time" name="clock_out" value="{{ old('clock_out',$attendance->clock_out ? \Carbon\Carbon::parse($attendance->clock_out)->format('H:i') : '') }}">
-                            @error('clock_out')
-                                <p class="error">{{ $message }}</p>
-                            @enderror
+                            @if($errors->has('clock_in') || $errors->has('clock_out'))
+                                <p class="error">
+                                    {{ $errors->first('clock_in') ?: $errors->first('clock_out') }}</p>
+                            @endif
                         @endif
                     </td>
                 </tr>
@@ -63,10 +61,13 @@
                     <th>{{ $index === 0 ? '休憩' : '休憩' . ($index + 1) }}</th>
                     <td>
                         <input type="time" name="rest_start[]" value="{{ old('rest_start.' .$index, $rest->start_time ? \Carbon\Carbon::parse($rest->start_time)->format('H:i') : '') }}">
-                        @error('rest_start.' . $index) <p class="error">{{ $message }}</p>@enderror
                         <span class="time-separator">〜</span>
                         <input type="time" name="rest_end[]" value="{{ old('rest_end.' .$index, $rest->end_time ? \Carbon\Carbon::parse($rest->end_time)->format('H:i') : '') }}">
-                        @error('rest_end.' . $index) <p class="error">{{ $message }}</p>@enderror
+                        @if($errors->has('rest_start.' . $index) || $errors->has('rest_end.' . $index))
+                            <p class="error">
+                                {{ $errors->first('rest_start.' . $index) ?: $errors->first('rest_end.' . $index) }}
+                            </p>
+                        @endif
                     </td>
                 </tr>
                 @endforeach
@@ -75,11 +76,13 @@
                     <th>休憩{{ $nextIndex+ 1 }}</th>
                     <td>
                         <input type="time" name="rest_start[]" value="{{ old('rest_start.' . $nextIndex) }}">
-                        @error('rest_start.' . $nextIndex) <p class="error">{{ $message }}</p>
-                        @enderror
                         <span class="time-separator">〜</span>
                         <input type="time" name="rest_end[]" value="{{ old('rest_end.' . $nextIndex) }}">
-                        @error('rest_end.' . $nextIndex) <p class="error">{{ $message }}</p>@enderror
+                        @if($errors->has('rest_start.' . $nextIndex) || $errors->has('rest_end.' . $nextIndex))
+                            <p class="error">
+                                {{ $errors->first('rest_start.' . $nextIndex) ?: $errors->first('rest_end.' . $index) }}
+                            </p>
+                        @endif
                     </td>
                 </tr>
                 @endif

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Http\AdminAttendanceUpdateRequest;
+use App\Http\Requests\Admin\AdminAttendanceUpdateRequest;
 use App\Models\Attendance;
 use App\Models\Rest;
 use App\Models\AttendanceCorrectRequest;
@@ -49,11 +49,11 @@ class AttendanceController extends Controller
                 'remarks' => $request->remarks,
             ]);
 
-            if($request->has('rest')){
+            if($request->has('rests')){
                 foreach($request->rests as $restId => $restData){
                     $rest = Rest::find($restId);
                     if($rest){
-                        $rest->updata([
+                        $rest->update([
                             'start_time' => $restData['start'],
                             'end_time' => $restData['end'],
                         ]);

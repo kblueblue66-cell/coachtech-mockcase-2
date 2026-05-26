@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             'date'      => '2026-05-01',
             'clock_in'  => '09:00:00',
             'clock_out' => '18:00:00',
+            'remarks'   => ''
         ]);
 
         Rest::create([

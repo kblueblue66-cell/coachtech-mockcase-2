@@ -16,7 +16,7 @@
 
 .attendance-detail__error-message{
     color: #ff0000;
-    font-size: 16px;
+    font-size: 10px;
     margin-bottom: 10px;
 }
 
@@ -87,6 +87,12 @@ input[type='time']::-webkit-calendar-picker-indicator {
     height: 100px;
     text-align: left;
     resize: none;
+}
+
+.error{
+    color: #ff0000;
+    font-size: 15px;
+    margin-top: 10px;
 }
 
 .form-footer{

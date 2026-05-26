@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -36,7 +36,7 @@ class AdminAttendanceUpdateRequest extends FormRequest
     {
         return[
             'clock_in.required' => '出勤時間もしくは退勤時間が不適切な値で',
-            'clock_out.required' => '出勤時間もしくは退勤時間が不適切な値で',
+            'clock_out.required' => '出勤時間もしくは退勤時間が不適切な値です',
             'clock_out.after' => '出勤時間もしくは退勤時間が不適切な値です',
             'rests.*.start.required' => '休憩時間が不適切な値です',
             'rests.*.start.after_or_equal' => '休憩時間が不適切な値です',
