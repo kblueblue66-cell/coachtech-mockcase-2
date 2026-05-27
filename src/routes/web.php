@@ -28,7 +28,7 @@ Route::prefix('admin')->group(function(){
 });
 
 //一般ユーザー（要認証）
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth','verified'])->group(function(){
     //勤怠登録画面
     Route::get('/attendance',[AttendanceController::class,'index'])->name('attendance.index');
     //出勤・退勤機能
