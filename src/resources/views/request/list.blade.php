@@ -50,7 +50,7 @@
                     <td>{{ \Carbon\Carbon::parse($request->date)->format('Y/m/d') }}</td>
                     <td>{{ $request->remarks }}</td>
                     <td>{{ $request->created_at->format('Y/m/d') }}</td>
-                    <td><a href="{{ route('attendance.detail', ['id' => $request->attendance_id]) }}" class="detail-link">詳細</a></td>
+                    <td><a href="/stamp_correction_request/approve/{{ $request->id }}" class="detail-link">詳細</a></td>
                 </tr>
                 @endforeach
             @endif
