@@ -104,7 +104,9 @@
     </div>
     <div class="form-footer">
             @if($isPending)
-                <p class="pending-message" style="color: red">*承認待ちのため修正はできません。</p>
+                <p class="pending-message" >
+                    *承認待ちのため修正はできません。
+                </p>
             @else
                 <button type="submit" class="submit-btn" form="attendance-form">修正</button>
             @endif

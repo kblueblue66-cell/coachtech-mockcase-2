@@ -16,8 +16,9 @@
 
 .attendance-detail__error-message{
     color: #ff0000;
-    font-size: 10px;
     margin-bottom: 10px;
+    font-weight: bold;
+    text-align: right;
 }
 
 .attendance-detail__table{

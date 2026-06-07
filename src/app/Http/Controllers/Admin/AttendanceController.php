@@ -28,9 +28,26 @@ class AttendanceController extends Controller
     {
         $attendance = Attendance::with(['user','rests'])->findOrFail($id);
 
-        $isPending = AttendanceCorrectRequest::where('attendance_id',$id)
+        $pendingRequest = AttendanceCorrectRequest::where('attendance_id',$id)
             ->where('status',1)
-            ->exists();
+            ->first();
+
+        $isPending = !is_null($pendingRequest);
+
+        if($isPending){
+            $attendance->clock_in = $pendingRequest->revised_clock_in;
+            $attendance->clock_out = $pendingRequest->revised_clock_out;
+            $attendance->remarks = $pendingRequest->remarks;
+
+            $revisedRests = $pendingRequest->restCorrectRequests->map(function($req){
+                return(object)[
+                    'id' => $req->id,
+                    'start_time' => $req->revised_start_time,
+                    'end_time' => $req->revised_end_time
+                ];
+            });
+            $attendance->setRelation('rests',$revisedRests);
+        }
 
         return view('admin.attendance.detail',[
             'attendance' => $attendance,
@@ -41,6 +58,14 @@ class AttendanceController extends Controller
     public function update(AdminAttendanceUpdateRequest $request, $id)
     {
         $attendance = Attendance::findOrFail($id);
+
+        $isPending = AttendanceCorrectRequest::where('attendance_id',$id)
+            ->where('status',1)
+            ->exists();
+
+        if($isPending){
+            return redirect()->back();
+        }
 
         DB::transaction(function() use ($request,$attendance){
             $attendance->update([
@@ -62,6 +87,6 @@ class AttendanceController extends Controller
             }
         });
 
-        return redirect()->route('admin.attendance.list');
+        return redirect()->route('admin.attendance.list',['date' => $attendance->date]);
     }
 }

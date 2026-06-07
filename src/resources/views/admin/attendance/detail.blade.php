@@ -10,10 +10,6 @@
 <div class="attendance-detail__container">
     <h2 class="attendance-detail__title">勤怠詳細</h2>
 
-    @if($isPending)
-        <p class="attendance-detail__error-message" style="color:red">承認待ちのため修正はできません。</p>
-    @endif
-
     <form action="{{ route('admin.attendance.update',['id' => $attendance->id]) }}" method="post" id="attendance-form">
         @csrf
         <table class="attendance-detail__table">
@@ -75,7 +71,11 @@
         </table>
     </form>
     <div class="form-footer">
-        @if(!$isPending)
+        @if($isPending)
+            <p class="attendance-detail__error-message">
+                *承認待ちのため修正できません。
+            </p>
+        @else
             <button type="submit" class="submit-btn" form="attendance-form">修正</button>
         @endif
     </div>
