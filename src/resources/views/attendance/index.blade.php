@@ -12,11 +12,11 @@
         {{ $status }}
     </div>
 
-    <div class="date-display">
+    <div id="realtime-date" class="date-display">
         {{ $date }}
     </div>
 
-    <div class="time-display">
+    <div id="realtime-time" class="time-display">
         {{ $time }}
     </div>
 
@@ -48,4 +48,33 @@
         @endif
     </div>
 </div>
+
+<script>
+    function updateClock(){
+        const now = new Date();
+
+        // 日付のフォーマット (例: 2023年6月1日(木)) [Source 4のデザインに準拠]
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+        const date = now.getDate();
+        const dayNum = now.getDay();
+        const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+        const day = weekdays[dayNum];
+
+        // 時刻のフォーマット (例: 08:00)
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+
+        const dateString = `${year}年${month}月${date}日(${day})`;
+        const timeString = `${hours}:${minutes}`;
+
+        // 画面の要素を書き換え
+        document.getElementById('realtime-date').textContent = dateString;
+        document.getElementById('realtime-time').textContent = timeString;
+    }
+
+    setInterval(updateClock,1000);
+
+    updateClock();
+</script>
 @endsection

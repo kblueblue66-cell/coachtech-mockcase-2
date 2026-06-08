@@ -49,7 +49,9 @@ class FortifyServiceProvider extends ServiceProvider
         app()->instance(LogoutResponse::class,new class implements LogoutResponse{
             public function toResponse($request)
             {
-                return redirect('/login');
+                return  $request->is('admin/*') || $request->is('admin')
+                    ? redirect('/admin/login')
+                    : redirect('/login');
             }
         });
         RateLimiter::for('login', function (Request $request) {
