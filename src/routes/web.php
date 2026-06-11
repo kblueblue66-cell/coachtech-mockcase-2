@@ -17,11 +17,11 @@ use App\Http\Controllers\Admin\StampCorrectionController as AdminStampCorrection
 Route::get('/register',[RegisterUserController::class,'create'])->name('register');
 Route::post('/register',[RegisterUserController::class,'store']);
 
-//一般ユーザー用用ログイン
+//一般ユーザー用ログイン（認証不要）
 Route::get('/login',[AuthenticatedSessionController::class,'create'])->name('login');
 Route::post('/login',[AuthenticatedSessionController::class,'store']);
 
-//管理者用ログイン
+//管理者用ログイン(認証不要)
 Route::prefix('admin')->group(function(){
     Route::get('/login',[AdminAuthenticatedSessionController::class,'create'])->name('admin.login');
     Route::post('/login',[AdminAuthenticatedSessionController::class,'store']);
