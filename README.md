@@ -72,7 +72,7 @@ php artisan db:seed
 ``` bash
 php artisan storage:link
 ```
-##　テストケースの実行
+## テストケースの実行
 ```bash
 php artisan test
 ```
